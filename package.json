@@ -1,0 +1,25 @@
+{
+  "name": "cypress-fs",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "url": "https://github.com/Hamza-Bouhelal/cypress-fs.git",
+  "scripts": {
+    "lint": "eslint . --ext .ts --fix",
+    "build": "tsc",
+    "test": "yarn lint && yarn cypress run",
+    "release": "yarn test && yarn build && yarn version && node scripts/release.js && yarn publish dist"
+  },
+  "dependencies": {
+    "cypress": "^13.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^8.49.0"
+  }
+}

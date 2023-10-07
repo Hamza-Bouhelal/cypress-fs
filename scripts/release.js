@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 const packageJson = require("../package.json");
-import { execSync } from "child_process";
+const { execSync } = require('child_process');
 
 const VersionUpdateType = {
   patch: 'patch',

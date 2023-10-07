@@ -16,11 +16,10 @@ if (!commitMessage) {
   console.log('Commit message wasn\'t passed down.');
   process.exit(1);
 }
-
-execSync('yarn build', { encoding: 'utf-8' });
-
 const versionUpdate = versionUpdateType(commitMessage);
 const NEW_VERSION = execSync(`npm version ${versionUpdate} --force`, { encoding: 'utf-8' });
+
+execSync('yarn build', { encoding: 'utf-8' });
 
 console.log(`Releasing package cypress-fs@${NEW_VERSION}`);
 

@@ -9,12 +9,13 @@ stages:
 dependencies:
   stage: build
   script:
-    - yarn
+    - yarn install --frozen-lockfile
     - yarn build
   artifacts:
     paths:
       - node_modules/
       - dist/
+      - ~/.cache
     expire_in: 1 week
 
 lint:

@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .ts --fix",
     "build": "tsc",
     "test": "yarn lint && yarn cypress run",
-    "release": "yarn build && node ./scripts/release.js"
+    "release": "node ./scripts/release.js"
   },
   "dependencies": {
     "cypress": "^13.2.0",

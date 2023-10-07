@@ -1,6 +1,3 @@
-const fs = require("fs-extra");
-const path = require("path");
-const packageJson = require("../package.json");
 const { execSync } = require('child_process');
 
 const VersionUpdateType = {
@@ -24,42 +21,6 @@ execSync('yarn build', { encoding: 'utf-8' });
 
 const versionUpdate = versionUpdateType(commitMessage);
 const NEW_VERSION = execSync(`npm version ${versionUpdate} --force`, { encoding: 'utf-8' });
-
-const newPackage = {
-  ...packageJson,
-  main: "./support.js",
-  typings: "./index.d.ts",
-};
-
-fs.outputFileSync(
-  path.resolve(__dirname, "..", "dist", "package.json"),
-  JSON.stringify(newPackage, null, 2)
-);
-
-fs.copy(
-  path.resolve(__dirname, "..", "src", "index.d.ts"),
-  path.resolve(__dirname, "..", "dist", "index.d.ts")
-);
-
-fs.copy(
-  path.resolve(__dirname, "..", "src", ".npmignore",
-  path.resolve(__dirname, "..", "dist", ".npmignore"))
-);
-
-fs.copy(
-  path.resolve(__dirname, "..", "src", ".npmrc"),
-  path.resolve(__dirname, "..", "dist", ".npmrc")
-);
-
-fs.copy(
-  path.resolve(__dirname, "..", "README.md"),
-  path.resolve(__dirname, "..", "dist", "README.md")
-);
-
-fs.copy(
-  path.resolve(__dirname, "..", "LICENSE"),
-  path.resolve(__dirname, "..", "dist", "LICENSE")
-);
 
 console.log(`Releasing package cypress-fs@${NEW_VERSION}`);
 

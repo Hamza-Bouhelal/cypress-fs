@@ -7,7 +7,7 @@
   "url": "https://github.com/Hamza-Bouhelal/cypress-fs.git",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "build": "tsc",
+    "build": "node ./scripts/build.js",
     "test": "yarn cypress run",
     "release": "node ./scripts/release.js"
   },

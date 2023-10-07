@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "types": ["cypress", "node"],
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["DOM", "DOM.Iterable", "ES2016"],                             
+    "outDir": "./dist",                                 
+    "declaration": true,   
+    "esModuleInterop": true,                           
+    "forceConsistentCasingInFileNames": true,           
+    "strict": true,
+    "strictPropertyInitialization": false,           
+    "skipLibCheck": true 
+  },
+  "include": ["src/**/*.ts", "./node_modules/*"]
+}

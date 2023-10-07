@@ -2,14 +2,14 @@
   "name": "cypress-fs",
   "version": "0.0.5",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "url": "https://github.com/Hamza-Bouhelal/cypress-fs.git",
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
     "build": "tsc",
     "test": "yarn lint && yarn cypress run",
-    "release:patch": "npm version patch --force && node scripts/release.js && npm publish dist"
+    "release": "yarn build && node ./scripts/release.js"
   },
   "dependencies": {
     "cypress": "^13.2.0",

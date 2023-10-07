@@ -20,6 +20,9 @@ if (!commitMessage) {
   process.exit(1);
 }
 
+const versionUpdate = versionUpdateType(commitMessage);
+const NEW_VERSION = execSync(`npm version ${versionUpdate} --force`, { encoding: 'utf-8' });
+
 const newPackage = {
   ...packageJson,
   main: "./support.js",
@@ -36,8 +39,25 @@ fs.copy(
   path.resolve(__dirname, "..", "dist", "index.d.ts")
 );
 
-const versionUpdate = versionUpdateType(commitMessage);
-const NEW_VERSION = execSync(`npm version ${versionUpdate} --force`, { encoding: 'utf-8' });
+fs.copy(
+  path.resolve(__dirname, "..", "src", ".npmignore",
+  path.resolve(__dirname, "..", "dist", ".npmignore"))
+);
+
+fs.copy(
+  path.resolve(__dirname, "..", "src", ".npmrc"),
+  path.resolve(__dirname, "..", "dist", ".npmrc")
+);
+
+fs.copy(
+  path.resolve(__dirname, "..", "README.md"),
+  path.resolve(__dirname, "..", "dist", "README.md")
+);
+
+fs.copy(
+  path.resolve(__dirname, "..", "LICENSE"),
+  path.resolve(__dirname, "..", "dist", "LICENSE")
+);
 
 console.log(`Releasing package cypress-fs@${NEW_VERSION}`);
 

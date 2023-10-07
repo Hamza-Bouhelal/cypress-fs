@@ -1,6 +1,6 @@
 {
   "name": "cypress-fs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .ts --fix",
     "build": "tsc",
     "test": "yarn lint && yarn cypress run",
-    "release:patch": "npm version patch --force && node scripts/release.js && yarn publish dist"
+    "release:patch": "npm version patch --force && node scripts/release.js && npm publish dist"
   },
   "dependencies": {
     "cypress": "^13.2.0",

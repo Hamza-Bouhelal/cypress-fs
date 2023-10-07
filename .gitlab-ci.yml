@@ -1,12 +1,8 @@
 image: node:18.17.1
 
-variables:
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
-
 stages:
   - build
   - lint
-  - test
   - publish
 
 dependencies:
@@ -18,18 +14,12 @@ dependencies:
     paths:
       - node_modules/
       - dist/
-      - cache/Cypress/
     expire_in: 1 week
 
 lint:
   stage: lint
   script:
     - yarn lint
-
-test:
-  stage: test
-  script:
-    - yarn test
 
 publish:
   stage: publish

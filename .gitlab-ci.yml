@@ -9,11 +9,9 @@ dependencies:
   stage: build
   script:
     - yarn install --frozen-lockfile
-    - yarn build
   artifacts:
     paths:
       - node_modules/
-      - dist/
     expire_in: 1 week
 
 lint:
@@ -32,3 +30,7 @@ publish:
     - master
   except:
     - /^no-release.*$/
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week

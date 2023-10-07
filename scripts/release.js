@@ -30,5 +30,5 @@ console.log('Released successfully! \n Pushing to git...');
 execSync([
   'git remote remove origin',
   'git remote add origin https://bouhelalhamza:${GITLAB_TOKEN}@gitlab.com/bouhelalhamza/cypress-fs.git',
-  'git push origin HEAD:main -o ci.skip'
+  'git push origin HEAD:master -o ci.skip'
 ].join(' && '), { encoding: 'utf-8' });

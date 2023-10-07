@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "index.js",
   "types": "index.d.ts",
-  "url": "https://github.com/Hamza-Bouhelal/cypress-fs.git",
+  "repository": "gitlab:bouhelalhamza/cypress-fs",
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "node ./scripts/build.js",

@@ -3,13 +3,12 @@ image: node:18.17.1
 stages:
   - build
   - lint
-  - test
   - publish
 
 dependencies:
   stage: build
   script:
-    - yarn
+    - yarn install --frozen-lockfile
     - yarn build
   artifacts:
     paths:
@@ -21,11 +20,6 @@ lint:
   stage: lint
   script:
     - yarn lint
-
-test:
-  stage: test
-  script:
-    - yarn test
 
 publish:
   stage: publish

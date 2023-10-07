@@ -6,10 +6,10 @@
   "types": "index.d.ts",
   "url": "https://github.com/Hamza-Bouhelal/cypress-fs.git",
   "scripts": {
-    "lint": "eslint . --ext .ts --fix",
+    "lint": "eslint . --ext .ts",
     "build": "tsc",
-    "test": "yarn lint && yarn cypress run",
-    "release": "yarn build && node ./scripts/release.js"
+    "test": "yarn cypress run",
+    "release": "node ./scripts/release.js"
   },
   "dependencies": {
     "cypress": "^13.2.0",

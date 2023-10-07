@@ -29,6 +29,6 @@ publish:
   script:
     - yarn release "$CI_COMMIT_MESSAGE"
   only:
-    - main
+    - master
   except:
     - /^no-release.*$/

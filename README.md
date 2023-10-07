@@ -22,9 +22,9 @@ yarn add --dev cypress-fs
 
 ### Importing the commands
 
-To use Cypress-fs, you need to import the commands into your Cypress project. To do this, add the following line to your project's `cypress/support/commands.js` file:
+To use Cypress-fs, you need to import the commands into your Cypress project. To do this, add the following line to your project's `cypress/support/e2e.ts` file:
 
-```js
+```ts
 import "cypress-fs";
 ```
 
@@ -32,7 +32,7 @@ import "cypress-fs";
 
 Cypress-fs requires some cypress tasks to be registered in order to work. To do this, update your cypress.config.ts to look like the following:
 
-```js
+```ts
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
@@ -94,4 +94,4 @@ Checks if a directory exists. - `path` - The path to the directory to check.
 
 ### Note
 
-The types used are the same as the ones used each corresponding method by [fs](https://nodejs.org/api/fs.html) module.
+The types used are the same as the ones used by each corresponding method frpm the [fs](https://nodejs.org/api/fs.html) module.

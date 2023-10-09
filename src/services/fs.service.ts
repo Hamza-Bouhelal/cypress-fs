@@ -1,29 +1,27 @@
 import fs from 'fs';
-import { CreateDirOptions, DeleteDirOptions, ReadFileOptions } from '../types';
+import { CreateDirOptions, DeleteDirOptions, ReadFileOptions, ReadDirOptions } from '../types';
 
 export const fileSystemMethods = {
     fsFileExists: (path: string) => {
         try {
             return fs.existsSync(path);
         } catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
-        return null;
     },
     fsReadFile({ path, options }: { path: string, options?: ReadFileOptions }) {
         try {
             return fs.readFileSync(path, options);
         } catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
-        return null;
     },
     fsWriteFile({ path, content, options }: { path: string, content: string, options?: fs.WriteFileOptions }) {
         try {
             fs.writeFileSync(path, content, options);
         }
         catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -33,7 +31,7 @@ export const fileSystemMethods = {
             fs.unlinkSync(path);
         }
         catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -42,7 +40,7 @@ export const fileSystemMethods = {
             fs.mkdirSync(path, fileOptions);
         }
         catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -51,7 +49,7 @@ export const fileSystemMethods = {
             fs.rmdirSync(path, fileOptions);
         }
         catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -59,15 +57,15 @@ export const fileSystemMethods = {
         try {
             fs.copyFileSync(path, newPath, mode);
         } catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
     fsChmod({ path, mode }: { path: string, mode: number }) {
         try {
             fs.chmodSync(path, mode);
-        } catch {
-            console.error(`File ${path} not found`);
+        } catch (err) {
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -75,7 +73,7 @@ export const fileSystemMethods = {
         try {
             fs.appendFileSync(path, content, options);
         } catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -83,7 +81,7 @@ export const fileSystemMethods = {
         try {
             fs.renameSync(path, newPath);
         } catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
         return null;
     },
@@ -91,8 +89,29 @@ export const fileSystemMethods = {
         try {
             return fs.existsSync(path);
         } catch (err) {
-            console.error(err);
+            throw new Error(`Cypress-fs Error: ${err}`);
         }
-        return null;
+    },
+    fsReadDir({ path, options }: { path: string, options?: ReadDirOptions }) {
+        try {
+            return fs.readdirSync(path, options);
+        } catch (err) {
+            throw new Error(`Cypress-fs Error: ${err}`);
+        }
+    },
+    fsIsDirectory(path: string) {
+        try {
+            return fs.lstatSync(path).isDirectory();
+        } catch (err) {
+            throw new Error(`Cypress-fs Error: ${err}`);
+        }
+    },
+    fsIsFile(path: string) {
+        try {
+            return fs.lstatSync(path).isFile();
+        }
+        catch (err) {
+            throw new Error(`Cypress-fs Error: ${err}`);
+        }
     }
 }

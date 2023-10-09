@@ -10,6 +10,13 @@ declare namespace Cypress {
         encoding?: null | undefined;
         flag?: string | undefined;
     };
+
+    type ReadDirOptions = BufferEncoding | {
+        encoding: BufferEncoding | null;
+        withFileTypes?: false | undefined;
+        recursive?: boolean | undefined;
+    }
+
     interface Chainable {
         fsFileExists(path: string): Chainable<boolean>;
         fsReadFile(path: string, options?: ReadFileOptions): Chainable<any>;
@@ -22,5 +29,8 @@ declare namespace Cypress {
         fsAppendFile({ path, content }: { path: string, content: string }): Chainable<void>;
         fsRename({ path, newPath }: { path: string, newPath: string }): Chainable<void>;
         fsDirExists(path: string): Chainable<boolean>;
+        fsReadDir(path: string, options?: ReadDirOptions): Chainable<string[]>;
+        fsIsDirectory(path: string): Chainable<boolean>;
+        fsIsFile(path: string): Chainable<boolean>;
     }
 }

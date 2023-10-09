@@ -46,3 +46,15 @@ Cypress.Commands.add('fsRename', ({ path, newPath }: { path: string, newPath: st
 Cypress.Commands.add('fsDirExists', (path: string) => {
     return cfs.fsDirExists(path);
 });
+
+Cypress.Commands.add('fsReadDir', (path: string, options?: fst.ReadDirOptions) => {
+    return cfs.fsReadDir(path, options);
+});
+
+Cypress.Commands.add('fsIsDirectory', (path: string) => {
+    return cfs.fsIsDirectory(path);
+})
+
+Cypress.Commands.add('fsIsFile', (path: string) => {
+    return cfs.fsIsFile(path);
+})

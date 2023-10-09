@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "node ./scripts/build.js",
-    "test": "yarn cypress run",
+    "test": "yarn cypress run --headless --browser chrome",
     "release": "node ./scripts/release.js"
   },
   "dependencies": {

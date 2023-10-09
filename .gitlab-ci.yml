@@ -23,8 +23,10 @@ lint:
 test:
   image: docker:stable
   stage: test
+  before_script:
+    - docker build -f Dockerfile -t cypress-fs-tests .
   script:
-    - yarn test:docker
+    - docker run cypress-fs-tests
 
 publish:
   stage: publish

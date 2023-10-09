@@ -9,8 +9,6 @@
     "lint": "eslint . --ext .ts",
     "build": "node ./scripts/build.js",
     "test": "yarn cypress run",
-    "build:test": "docker build -f Dockerfile -t cypress-fs-tests .",
-    "test:docker": "yarn build:test && docker run cypress-fs-tests",
     "release": "node ./scripts/release.js"
   },
   "dependencies": {

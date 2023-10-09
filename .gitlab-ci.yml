@@ -24,7 +24,7 @@ test:
   image: docker:stable
   stage: test
   script:
-    - test:docker
+    - yarn test:docker
 
 publish:
   stage: publish

@@ -3,6 +3,7 @@ image: node:18.17.1
 stages:
   - build
   - lint
+  - test
   - publish
 
 dependencies:
@@ -18,6 +19,12 @@ lint:
   stage: lint
   script:
     - yarn lint
+
+test:
+  image: docker:stable
+  stage: test
+  script:
+    - test:docker
 
 publish:
   stage: publish

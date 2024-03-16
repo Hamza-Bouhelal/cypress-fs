@@ -1,22 +1,12 @@
 import * as fst from "../types";
 import fs from "fs";
 
-const getValue = function <T = unknown>(cb: () => Cypress.Chainable<T>): T {
-  let value;
-  cb().then((val) => {
-    value = val;
-  });
-  return value as T;
-};
-
 export function fsExistsSync(path: string) {
-  return getValue(() => cy.task<boolean>("fsFileExists", path, { log: false }));
+  return cy.task<boolean>("fsFileExists", path, { log: false });
 }
 
 export function fsReadFile(path: string, options?: any) {
-  return getValue(() =>
-    cy.task("fsReadFile", { path, options }, { log: false })
-  );
+  return cy.task("fsReadFile", { path, options }, { log: false });
 }
 
 export function fsWriteFile(
@@ -81,25 +71,18 @@ export const fsRename = ({
   cy.task("fsRename", { path, newPath }, { log: false });
 };
 
-export const fsDirExists = (path: string): boolean => {
-  return getValue(() => cy.task<boolean>("fsDirExists", path, { log: false }));
+export const fsDirExists = (path: string) => {
+  return cy.task<boolean>("fsDirExists", path, { log: false });
 };
 
-export const fsReadDir = (
-  path: string,
-  options?: fst.ReadDirOptions
-): string[] => {
-  return getValue(() =>
-    cy.task("fsReadDir", { path, options }, { log: false })
-  );
+export const fsReadDir = (path: string, options?: fst.ReadDirOptions) => {
+  return cy.task<string[]>("fsReadDir", { path, options }, { log: false });
 };
 
 export const fsIsDirectory = (path: string) => {
-  return getValue(() =>
-    cy.task<boolean>("fsIsDirectory", path, { log: false })
-  );
+  return cy.task<boolean>("fsIsDirectory", path, { log: false });
 };
 
 export const fsIsFile = (path: string) => {
-  return getValue(() => cy.task("fsIsFile", path, { log: false }));
+  return cy.task<boolean>("fsIsFile", path, { log: false });
 };

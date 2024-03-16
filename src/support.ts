@@ -1,95 +1,29 @@
 import * as cfs from "./commands/fileSystemCommands";
-import * as fst from "./types";
-import { ReadFileOptions } from "./types";
-import fs from "fs";
 
-Cypress.Commands.add("fsFileExists", (path: string) => {
-  return cfs.fsExistsSync(path);
-});
+Cypress.Commands.add("fsWriteFile", cfs.fsWriteFile);
 
-Cypress.Commands.add(
-  "fsReadFile",
-  (path: string, options?: ReadFileOptions) => {
-    return cfs.fsReadFile(path, options);
-  }
-);
+Cypress.Commands.add("fsDeleteFile", cfs.fsDeleteFile);
 
-Cypress.Commands.add(
-  "fsWriteFile",
-  (path: string, content: string, options: fs.WriteFileOptions) => {
-    return cfs.fsWriteFile(path, content, options);
-  }
-);
+Cypress.Commands.add("fsCreateDirectory", cfs.fsCreateDirectory);
 
-Cypress.Commands.add("fsDeleteFile", (path: string) => {
-  return cfs.fsDeleteFile(path);
-});
+Cypress.Commands.add("fsDeleteDirectory", cfs.fsDeleteDirectory);
 
-Cypress.Commands.add(
-  "fsCreateDirectory",
-  (path: string, fileOptions?: fst.CreateDirOptions) => {
-    return cfs.fsCreateDirectory(path, fileOptions);
-  }
-);
+Cypress.Commands.add("fsCopyFile", cfs.fsCopyFile);
 
-Cypress.Commands.add(
-  "fsDeleteDirectory",
-  (path: string, fileOptions?: fst.DeleteDirOptions) => {
-    return cfs.fsDeleteDirectory(path, fileOptions);
-  }
-);
+Cypress.Commands.add("fsChmod", cfs.fsChmod);
 
-Cypress.Commands.add(
-  "fsCopyFile",
-  ({
-    path,
-    newPath,
-    mode,
-  }: {
-    path: string;
-    newPath: string;
-    mode?: number;
-  }) => {
-    return cfs.fsCopyFile({ path, newPath, mode });
-  }
-);
+Cypress.Commands.add("fsAppendFile", cfs.fsAppendFile);
 
-Cypress.Commands.add(
-  "fsChmod",
-  ({ path, mode }: { path: string; mode: number }) => {
-    return cfs.fsChmod({ path, mode });
-  }
-);
+Cypress.Commands.add("fsRename", cfs.fsRename);
 
-Cypress.Commands.add(
-  "fsAppendFile",
-  ({ path, content }: { path: string; content: string }) => {
-    return cfs.fsAppendFile({ path, content });
-  }
-);
+Cypress.Commands.add("fsFileExists", cfs.fsExistsSync);
 
-Cypress.Commands.add(
-  "fsRename",
-  ({ path, newPath }: { path: string; newPath: string }) => {
-    return cfs.fsRename({ path, newPath });
-  }
-);
+Cypress.Commands.add("fsReadFile", cfs.fsReadFile);
 
-Cypress.Commands.add("fsDirExists", (path: string) => {
-  return cfs.fsDirExists(path);
-});
+Cypress.Commands.add("fsDirExists", cfs.fsDirExists);
 
-Cypress.Commands.add(
-  "fsReadDir",
-  (path: string, options?: fst.ReadDirOptions) => {
-    return cfs.fsReadDir(path, options);
-  }
-);
+Cypress.Commands.add("fsReadDir", cfs.fsReadDir);
 
-Cypress.Commands.add("fsIsDirectory", (path: string) => {
-  return cfs.fsIsDirectory(path);
-});
+Cypress.Commands.add("fsIsDirectory", cfs.fsIsDirectory);
 
-Cypress.Commands.add("fsIsFile", (path: string) => {
-  return cfs.fsIsFile(path);
-});
+Cypress.Commands.add("fsIsFile", cfs.fsIsFile);

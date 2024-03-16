@@ -1,24 +1,22 @@
 import * as fst from "../types";
 import fs from "fs";
 
-const getValue = () => {
-  const value = Cypress.env("cypress-fs-temp-env");
-  Cypress.env("cypress-fs-temp-env", undefined);
-  return value;
-};
-
-const setValue = (value: any) => {
-  Cypress.env("cypress-fs-temp-env", value);
+const getValue = function <T = unknown>(cb: () => Cypress.Chainable<T>): T {
+  let value;
+  cb().then((val) => {
+    value = val;
+  });
+  return value as T;
 };
 
 export function fsExistsSync(path: string) {
-  cy.task<boolean>("fsFileExists", path, { log: false }).then(setValue);
-  return getValue();
+  return getValue(() => cy.task<boolean>("fsFileExists", path, { log: false }));
 }
 
 export function fsReadFile(path: string, options?: any) {
-  cy.task("fsReadFile", { path, options }, { log: false }).then(setValue);
-  return getValue();
+  return getValue(() =>
+    cy.task("fsReadFile", { path, options }, { log: false })
+  );
 }
 
 export function fsWriteFile(
@@ -83,22 +81,25 @@ export const fsRename = ({
   cy.task("fsRename", { path, newPath }, { log: false });
 };
 
-export const fsDirExists = (path: string) => {
-  cy.task<boolean>("fsDirExists", path, { log: false }).then(setValue);
-  return getValue();
+export const fsDirExists = (path: string): boolean => {
+  return getValue(() => cy.task<boolean>("fsDirExists", path, { log: false }));
 };
 
-export const fsReadDir = (path: string, options?: fst.ReadDirOptions) => {
-  cy.task("fsReadDir", { path, options }, { log: false }).then(setValue);
-  return getValue();
+export const fsReadDir = (
+  path: string,
+  options?: fst.ReadDirOptions
+): string[] => {
+  return getValue(() =>
+    cy.task("fsReadDir", { path, options }, { log: false })
+  );
 };
 
 export const fsIsDirectory = (path: string) => {
-  cy.task("fsIsDirectory", path, { log: false }).then(setValue);
-  return getValue();
+  return getValue(() =>
+    cy.task<boolean>("fsIsDirectory", path, { log: false })
+  );
 };
 
 export const fsIsFile = (path: string) => {
-  cy.task("fsIsFile", path, { log: false }).then(setValue);
-  return getValue();
+  return getValue(() => cy.task("fsIsFile", path, { log: false }));
 };

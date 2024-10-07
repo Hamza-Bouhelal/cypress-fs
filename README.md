@@ -36,7 +36,7 @@ Cypress-fs requires some cypress tasks to be registered in order to work. To do 
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      return require("./node_modules/cypress-fs/plugins/index.js")(on, config);
+      return require("cypress-fs/plugins")(on, config);
     },
   },
 });
